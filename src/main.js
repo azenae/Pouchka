@@ -1,6 +1,7 @@
 // main.js: renderer, scene, game loop. Gameplay lives in other files (player.js, weapon.js, ...).
 import * as THREE from 'three';
 import { TUNING } from './tuning.js';
+import { Player } from './player.js';
 
 const container = document.getElementById('game');
 
@@ -41,6 +42,9 @@ for (const b of boxes) {
   scene.add(mesh);
 }
 
+// Create player
+const player = new Player(camera, scene);
+
 function resize() {
   const w = window.innerWidth;
   const h = window.innerHeight;
@@ -55,6 +59,7 @@ const clock = new THREE.Clock();
 function loop() {
   const dt = Math.min(clock.getDelta(), 0.05); // seconds, capped so a lag spike cannot break physics
   // Systems get updated here, e.g. player.update(dt), weapon.update(dt).
+  player.update(dt);
   renderer.render(scene, camera);
   requestAnimationFrame(loop);
 }
