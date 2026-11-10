@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FPS Prototype</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0f1a; font-family: system-ui, sans-serif; }
+    #game { position: fixed; inset: 0; }
+    #game canvas { display: block; width: 100%; height: 100%; }
+    #hud { position: fixed; inset: 0; pointer-events: none; color: #fff; }
+    #crosshair { position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px 0 0 -2px; background: #fff; border-radius: 50%; opacity: .85; }
+    #errors {
+      position: fixed; left: 0; right: 0; bottom: 0; max-height: 40%; overflow: auto; z-index: 99;
+      background: rgba(120, 0, 0, .92); color: #fff; font: 13px/1.4 ui-monospace, Consolas, monospace;
+      padding: 8px 12px; white-space: pre-wrap; display: none; pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="game"></div>
+  <div id="hud"><div id="crosshair"></div></div>
+  <div id="errors" title="Copy this text and paste it to the AI"></div>
+  <script>
+    // Shows any game error on screen so you can copy it to the AI. Keep this block as the first script.
+    (function () {
+      var box = document.getElementById('errors');
+      function show(msg) { box.style.display = 'block'; box.textContent += msg + '\n'; }
+      window.addEventListener('error', function (e) {
+        show('ERROR: ' + e.message + (e.filename ? '\n  at ' + e.filename + ':' + e.lineno + ':' + e.colno : ''));
+      });
+      window.addEventListener('unhandledrejection', function (e) {
+        show('PROMISE ERROR: ' + (e.reason && e.reason.stack ? e.reason.stack : e.reason));
+      });
+    })();
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

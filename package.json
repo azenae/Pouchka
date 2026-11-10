@@ -1,0 +1,14 @@
+{
+  "name": "fps-game",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "check": "node scripts/check.cjs",
+    "save": "node scripts/save.cjs",
+    "undo": "node scripts/undo.cjs",
+    "share": "node scripts/share.cjs"
+  }
+}
