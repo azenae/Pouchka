@@ -10,5 +10,12 @@
     "save": "node scripts/save.cjs",
     "undo": "node scripts/undo.cjs",
     "share": "node scripts/share.cjs"
+  },
+  "dependencies": {
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.0",
+    "vite": "^8.3.7"
   }
 }
